@@ -20,11 +20,26 @@ const Products: FC = () => {
   const [visibleCount, setVisibleCount] = useState<number>(
     INITIAL_VISIBLE_COUNT
   );
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const filteredProducts = useMemo(() => {
+    if (!allProducts) {
+      return [];
+    }
+    if (!searchValue) {
+      return allProducts;
+    }
+    const lowerCaseSearch = searchValue.toLowerCase();
+    return allProducts.filter((product) =>
+      product.title.toLowerCase().includes(lowerCaseSearch)
+    );
+  }, [allProducts, searchValue]);
+
   const productsToShow = useMemo(
-    () => allProducts?.slice(0, visibleCount),
-    [allProducts, visibleCount]
+    () => filteredProducts?.slice(0, visibleCount),
+    [filteredProducts, visibleCount]
   );
-  const hasMoreProducts = visibleCount < (allProducts?.length ?? 0);
+  const hasMoreProducts = visibleCount < (filteredProducts?.length ?? 0);
 
   if (status === STATUS.LOADING) {
     return <div>Loading...</div>;
@@ -36,7 +51,16 @@ const Products: FC = () => {
 
   return (
     <>
-      <Search />
+      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+
+      {filteredProducts.length === 0 &&
+        searchValue &&
+        status === STATUS.SUCCESS && (
+          <div className={cl.no_results}>
+            No products found matching your search.
+          </div>
+        )}
+
       <div className={cl.wrapper}>
         {productsToShow?.map((item) => (
           <Link key={item.id} className={cl.link} href={`/products/${item.id}`}>

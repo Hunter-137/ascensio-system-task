@@ -1,17 +1,21 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import cl from "./Search.module.scss";
 
-const Search: FC = () => {
-  const [value, setValue] = useState("");
+interface SearchProps {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+}
+
+const Search: FC<SearchProps> = ({ searchValue, setSearchValue }) => {
   return (
     <div className={cl.search}>
       <input
         type="text"
         placeholder="Search title..."
-        value={value}
+        value={searchValue}
         onChange={(event) => {
-          setValue(event.target.value);
+          setSearchValue(event.target.value);
         }}
       />
     </div>
