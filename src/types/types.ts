@@ -3,6 +3,12 @@ export type TApiData = {
   title: string;
   price: number;
   image: string;
+  description: string;
+  category: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
 };
 
 export enum STATUS {
