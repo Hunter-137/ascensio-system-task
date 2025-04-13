@@ -9,6 +9,7 @@ import cl from "./page.module.scss";
 
 const Products: FC = () => {
   const { data, status } = useFetch("https://fakestoreapi.com/products");
+  // console.log(status);
 
   if (status === STATUS.LOADING) {
     return <div>Loading...</div>;
@@ -21,8 +22,8 @@ const Products: FC = () => {
   return (
     <div className={cl.wrapper}>
       {data.map((item) => (
-        <div key={item.id} className={cl.cart}>
-          <Product name={item.title} price={item.price} image={item.image} />
+        <div key={item.id} className={cl.product}>
+          <Product title={item.title} price={item.price} image={item.image} />
         </div>
       ))}
     </div>
