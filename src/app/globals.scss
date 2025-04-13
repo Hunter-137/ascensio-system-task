@@ -1,7 +1,15 @@
+@use "sass:math";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+
+@function calculate-rem($value, $base-width) {
+  $result: math.div($value, $base-width) * 100;
+  @return #{$result}vw;
+}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -20,38 +28,30 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-size: 0.5208333333333333vw;
+  font-size: calculate-rem(10, 1920);
 
   @media (max-width: 1470px) {
-    font-size: 0.6802721088435374vw;
-  }
-
-  @media (max-width: 1470px) {
-    font-size: 0.6802721088435374vw;
+    font-size: calculate-rem(10, 1470);
   }
 
   @media (max-width: 992px) {
-    font-size: 0.0100806451612903vw;
+    font-size: calculate-rem(10, 992);
   }
 
   @media (max-width: 768px) {
-    font-size: 1.302083333333333vw;
+    font-size: calculate-rem(10, 768);
   }
 
   @media (max-width: 580px) {
-    font-size: 1.724137931034483vw;
-  }
-
-  @media (max-width: 580px) {
-    font-size: 1.724137931034483vw;
+    font-size: calculate-rem(10, 580);
   }
 
   @media (max-width: 460px) {
-    font-size: 2.173913043478261vw;
+    font-size: calculate-rem(10, 460);
   }
 
   @media (max-width: 380px) {
-    font-size: 2.631578947368421vw;
+    font-size: calculate-rem(10, 380);
   }
 }
 
@@ -100,6 +100,14 @@ a {
   &__title {
     font-size: 3.2rem;
     font-weight: 600;
+
+    @media (max-width: 580px) {
+      font-size: 2.4rem;
+    }
+
+    @media (max-width: 460px) {
+      font-size: 2rem;
+    }
   }
 
   &-navigation {
@@ -110,12 +118,24 @@ a {
     align-items: center;
     gap: 3rem;
 
+    @media (max-width: 580px) {
+      gap: 1.6rem;
+    }
+
+    @media (max-width: 460px) {
+      gap: 1.4rem;
+    }
+
     &__link {
       display: inline-block;
       width: fit-content;
       font-size: 2.4rem;
       transition-duration: 200ms;
       position: relative;
+
+      @media (max-width: 580px) {
+        font-size: 1.8rem;
+      }
 
       &::after {
         content: "";
