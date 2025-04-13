@@ -10,7 +10,7 @@ export const useFetch = (url: string) => {
       try {
         setStatus(STATUS.LOADING);
         const response = await fetch(url);
-        const result = await response.json();
+        const result: TApiData[] = await response.json();
         setData(result);
         setStatus(STATUS.SUCCESS);
       } catch (error) {
@@ -19,7 +19,7 @@ export const useFetch = (url: string) => {
       }
     };
     fetchData();
-  }, []);
+  }, [url]);
 
   return { data, status };
 };
