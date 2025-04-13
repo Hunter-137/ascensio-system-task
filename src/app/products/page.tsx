@@ -2,6 +2,7 @@
 
 import { FC, useMemo, useState } from "react";
 import Link from "next/link";
+import Search from "@/components/Search/Search";
 import Product from "@/components/Product/Product";
 import Button from "@/components/Button/Button";
 import { useFetch } from "@/hooks/useFetch";
@@ -35,6 +36,7 @@ const Products: FC = () => {
 
   return (
     <>
+      <Search />
       <div className={cl.wrapper}>
         {productsToShow?.map((item) => (
           <Link key={item.id} className={cl.link} href={`/products/${item.id}`}>
