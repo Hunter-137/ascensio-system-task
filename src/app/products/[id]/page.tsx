@@ -3,12 +3,15 @@
 import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+
+import { useFetch } from "@/hooks/useFetch";
+import Button from "@/components/Button/Button";
+import Loading from "@/components/Loading/Loading";
+import Faile from "@/components/Faile/Faile";
+import { STATUS, TApiData } from "@/types/types";
 
 import cl from "./ProductDetail.module.scss";
-import { useFetch } from "@/hooks/useFetch";
-import { STATUS, TApiData } from "@/types/types";
-import { useParams } from "next/navigation";
-import Button from "@/components/Button/Button";
 
 const ProductDetail: FC = () => {
   const { id } = useParams();
@@ -17,11 +20,11 @@ const ProductDetail: FC = () => {
   );
 
   if (status === STATUS.LOADING) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (status === STATUS.ERROR) {
-    return <div>Error</div>;
+    return <Faile />;
   }
 
   return (
