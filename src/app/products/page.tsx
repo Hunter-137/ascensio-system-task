@@ -3,13 +3,16 @@
 import { FC, useMemo, useState } from "react";
 import Link from "next/link";
 import { observer } from "mobx-react-lite";
+
 import Search from "@/components/Search/Search";
 import Product from "@/components/Product/Product";
 import Button from "@/components/Button/Button";
 import Loading from "@/components/Loading/Loading";
-import Faile from "@/components/Faile/Faile";
+import Error from "@/components/Error/Error";
+
 import { useFetch } from "@/hooks/useFetch";
 import { STATUS, TApiData } from "@/types/types";
+
 import cardStore from "@/store/cardStore";
 
 import cl from "./page.module.scss";
@@ -27,13 +30,10 @@ const Products: FC = observer(() => {
   const [searchValue, setSearchValue] = useState<string>("");
 
   const filteredProducts = useMemo(() => {
-    if (!allProducts) {
-      return [];
-    }
-    if (!searchValue) {
-      return allProducts;
-    }
+    if (!allProducts) return [];
+    if (!searchValue) return allProducts;
     const lowerCaseSearch = searchValue.toLowerCase();
+
     return allProducts.filter((product) =>
       product.title.toLowerCase().includes(lowerCaseSearch)
     );
@@ -54,7 +54,7 @@ const Products: FC = observer(() => {
   }
 
   if (status === STATUS.ERROR) {
-    return <Faile />;
+    return <Error />;
   }
 
   return (
