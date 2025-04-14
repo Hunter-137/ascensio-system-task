@@ -8,4 +8,5 @@ class CardStore {
   }
 }
 
-export default new CardStore();
+const cardStore = new CardStore();
+export default cardStore;
