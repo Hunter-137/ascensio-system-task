@@ -1,14 +1,14 @@
 import { FC } from "react";
-import cl from "./Faile.module.scss";
+import cl from "./Error.module.scss";
 
-const Faile: FC = () => {
+const Error: FC = () => {
   return (
     <div className={cl.wrapper}>
-      <h2 className={cl.faile}>
+      <h2 className={cl.error}>
         Something went wrong. Please try again later.
       </h2>
     </div>
   );
 };
 
-export default Faile;
+export default Error;

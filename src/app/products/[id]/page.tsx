@@ -8,7 +8,7 @@ import { useParams } from "next/navigation";
 import { useFetch } from "@/hooks/useFetch";
 import Button from "@/components/Button/Button";
 import Loading from "@/components/Loading/Loading";
-import Faile from "@/components/Faile/Faile";
+import Error from "@/components/Error/Error";
 import { STATUS, TApiData } from "@/types/types";
 
 import cl from "./ProductDetail.module.scss";
@@ -24,7 +24,7 @@ const ProductDetail: FC = () => {
   }
 
   if (status === STATUS.ERROR) {
-    return <Faile />;
+    return <Error />;
   }
 
   return (
