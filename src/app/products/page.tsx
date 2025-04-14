@@ -2,18 +2,20 @@
 
 import { FC, useMemo, useState } from "react";
 import Link from "next/link";
+import { observer } from "mobx-react-lite";
 import Search from "@/components/Search/Search";
 import Product from "@/components/Product/Product";
 import Button from "@/components/Button/Button";
 import { useFetch } from "@/hooks/useFetch";
 import { STATUS, TApiData } from "@/types/types";
+import cardStore from "@/store/cardStore";
 
 import cl from "./page.module.scss";
 
 const INITIAL_VISIBLE_COUNT = 3;
 const LOAD_MORE_COUNT = 3;
 
-const Products: FC = () => {
+const Products: FC = observer(() => {
   const { data: allProducts, status } = useFetch<TApiData[]>(
     "https://fakestoreapi.com/products"
   );
@@ -41,6 +43,10 @@ const Products: FC = () => {
   );
   const hasMoreProducts = visibleCount < (filteredProducts?.length ?? 0);
 
+  const handleAddToCart = (product: TApiData) => {
+    cardStore.addProduct(product);
+  };
+
   if (status === STATUS.LOADING) {
     return <div>Loading...</div>;
   }
@@ -63,15 +69,18 @@ const Products: FC = () => {
 
       <div className={cl.wrapper}>
         {productsToShow?.map((item) => (
-          <Link key={item.id} className={cl.link} href={`/products/${item.id}`}>
-            <div className={cl.product}>
-              <Product
-                title={item.title}
-                price={item.price}
-                image={item.image}
-              />
-            </div>
-          </Link>
+          <div key={item.id}>
+            <Link className={cl.link} href={`/products/${item.id}`}>
+              <div className={cl.product}>
+                <Product
+                  title={item.title}
+                  price={item.price}
+                  image={item.image}
+                />
+              </div>
+            </Link>
+            <Button text="Add to Cart" onClick={() => handleAddToCart(item)} />
+          </div>
         ))}
       </div>
 
@@ -83,6 +92,6 @@ const Products: FC = () => {
       )}
     </>
   );
-};
+});
 
 export default Products;
