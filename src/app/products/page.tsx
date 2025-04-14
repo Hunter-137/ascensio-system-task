@@ -69,7 +69,7 @@ const Products: FC = observer(() => {
 
       <div className={cl.wrapper}>
         {productsToShow?.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className={cl.content}>
             <Link className={cl.link} href={`/products/${item.id}`}>
               <div className={cl.product}>
                 <Product
