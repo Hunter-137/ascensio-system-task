@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ascensio-system-task
 
-## Getting Started
+## Задание: разработка мини-приложения "Каталог товаров"
 
-First, run the development server:
+Необходимо разработать простое веб-приложение на Next.js с карточками товаров
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Функциональные требования:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Дизайн и верстка:
+• Использовать CSS/SCSS или Styled-Components.
+• Сделать адаптивную и кроссбраузерную верстку (минимум: десктоп и мобильная версия).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Динамическая загрузка данных:
+• Реализовать страницу "/products", на которой будет отображаться список товаров.
+• Данные загружать из JSON API:[
+• { "id": 1, "name": "iPhone 13", "price": 799, "image": "/iphone13.jpg" },
+• { "id": 2, "name": "Samsung Galaxy S22", "price": 749, "image": "/s22.jpg" },
+• { "id": 3, "name": "Google Pixel 6", "price": 599, "image": "/pixel6.jpg" }
+• ]
+•
+• Реализовать кнопку "Показать больше", при нажатии на которую подгружается еще 3 товара.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Карточка товара:
+• Должна содержать название, цену, изображение.
+• По клику на карточку — открывается детальная страница товара ("/products/[id]").
+• URL для детальной информации: "/products/[id]", где [id] — это id товара.
+• На детальной странице отображается название, цена, картинка и краткое описание товара.
 
-## Learn More
+4. Стейт-менеджмент:
+• Использовать React Hooks + Context API или MobX (по возможности).
 
-To learn more about Next.js, take a look at the following resources:
+5. Опционально (если хотите выделиться 💎):
+• Добавить корзину (можно просто локальное хранилище, без backend'а).
+• Добавить поиск по товарам (по названию).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Технические требования:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ✅ Использовать Next.js
+- ✅ Верстка: CSS/SCSS или Styled-Components
+- ✅ Управление состоянием: Context API или MobX
+- ✅ Данные можно хранить в Mock JSON (например, просто в файле products.json)
+- ✅ Код разместить в GitHub или в песочнице CodeSandbox

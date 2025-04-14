@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem;
+
+  .faile {
+    font-size: 4.8rem;
+    text-align: center;
+
+    @media (max-width: 580px) {
+      font-size: 3.2rem;
+    }
+  }
+}
